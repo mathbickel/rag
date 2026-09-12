@@ -5,17 +5,24 @@
   "main": "index.js",
   "scripts": {
     "start": "ts-node-dev --env-file .env src/index.ts",
-    "dev": "ts-node-dev --watch --inspect --env-file .env src/index.ts",
-    "test": "ts-node-dev --env-file .env  --test tests/**/*.test.ts"
+    "chroma": "npx chroma run --path ./database",
+    "dev:server": "tsx watch --inspect --env-file .env src/index.ts",
+    "dev": "concurrently \"npm run chroma\" \"npm run dev:server\""
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^10.0.5",
     "ts-node-dev": "^2.0.0",
+    "tsx": "^4.23.13",
     "typescript": "^7.0.2"
   },
   "dependencies": {
+    "@chroma-core/default-embed": "^0.1.9",
+    "chromadb": "^3.5.0",
+    "csv-parser": "^3.2.1",
+    "dotenv": "^17.4.2",
     "openai": "^7.10.0"
   }
 }
