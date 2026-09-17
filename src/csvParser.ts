@@ -1,10 +1,12 @@
 import fs from 'fs'
 import path from 'path';
+import { appendFile } from 'fs/promises';
 
 export type documentsData = {
     ids: string[],
     documents: string[]
 }
+
 export function getDocuments(): documentsData {
     const targetPaste = path.join(__dirname, '/mcu_data/archive');
     const allFilesAndFolders = fs.readdirSync(targetPaste);
@@ -22,5 +24,13 @@ export function getDocuments(): documentsData {
     return {
         ids,
         documents
+    }
+}
+
+export async function saveContextToFile(context: string) {
+    try {
+        return await appendFile('context.txt', context, 'utf-8');
+    } catch (err: any) {
+        throw new Error('Error to save file');
     }
 }

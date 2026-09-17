@@ -1,10 +1,10 @@
 import { addToCollection, getCollections } from "../database/collections";
 import { dbConnect } from "../database/connect";
 import { listAllColletions } from "../database/collections";
-import { chatResponse } from "./llm/responses";
+import { chat } from "./llm/responses";
 
 async function main(): Promise<any> {
-   await chatResponse();
+   return await chat();
    // await addToCollection();
    // await getCollections();
    // await listAllColletions();
