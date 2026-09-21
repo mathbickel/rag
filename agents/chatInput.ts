@@ -12,3 +12,5 @@ export function message(): Message {
         input: "save the number 1 please"
     }
 }
+
+// wich nunmber i asked you to save?

@@ -27,9 +27,9 @@ export function getDocuments(): documentsData {
     }
 }
 
-export async function saveContextToFile(context: string) {
+export async function saveContextToFile(context: string): Promise<void> {
     try {
-        return await appendFile('context.txt', context, 'utf-8');
+        await appendFile('context.txt', context, 'utf-8');
     } catch (err: any) {
         throw new Error('Error to save file');
     }

@@ -11,7 +11,7 @@ export async function chat() {
     }
 }
 
-async function send(data: Message): Promise<string> {
+async function send(data: Message, lastResponse?: string): Promise<string> {
     try {
         const message = formatMessage(data);
         const chatResponse = await openai.responses.create({
@@ -24,23 +24,18 @@ async function send(data: Message): Promise<string> {
             input: message,
         });
 
-        if(!data.isFirst) send(data);
-
         storeContext(message, chatResponse.output_text);
-
         return chatResponse.output_text;
     } catch (err: any) {
         throw new Error('Error in send message');
     }
 }
 
-function formatMessage(data: Message, lastResponse?: string) {
+function formatMessage(data: Message, lastResponse?: string): string {
     return data.isFirst ? data.input : `${lastResponse}\n${data.input}`;
 }
 
-function storeContext(message: string, lastResponse?: string) {
+function storeContext(message: string, lastResponse?: string): void {
     const newLine = !lastResponse ? message : `${message}\n${lastResponse}\n`;
-    console.log(newLine, 'CTX')
     saveContextToFile(newLine);
-    return newLine;
 }
