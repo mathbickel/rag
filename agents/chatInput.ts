@@ -1,6 +1,6 @@
 export type Message = {
     role: string,
-    isFirst: boolean,
+    isFirst?: boolean,
     input: string
 }
 

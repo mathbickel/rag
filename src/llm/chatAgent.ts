@@ -193,7 +193,6 @@ export async function reviewFiles(filePaths: string[]): Promise<string> {
 
     const message: Message = {
         role: 'user',
-        isFirst: true,
         input: prompt,
     };
 

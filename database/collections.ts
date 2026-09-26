@@ -27,13 +27,6 @@ export async function listAllColletions(): Promise<Collection[]> {
     return await connection.listCollections();
 }
 
-export async function saveChatResponseToContext() {
-    const connection = await connect();
-    const addContextCollection = await createCollection();
-    // return await addContextCollection.add({})
-}
-
-
 async function connect(): Promise<ChromaClient> {
     return await dbConnect();
 }

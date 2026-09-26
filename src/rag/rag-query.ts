@@ -51,14 +51,14 @@ async function askMCU(question: string): Promise<string> {
     // 3. Build the prompt with retrieved context
     const prompt = `You are a helpful assistant that answers questions about the Marvel Cinematic Universe (MCU).
 
-Use only the following context to answer the question. If the answer is not in the context, say you don't know.
+            Use only the following context to answer the question. If the answer is not in the context, say you don't know.
 
-Context:
-${context}
+            Context:
+            ${context}
 
-Question: ${question}
+            Question: ${question}
 
-Answer:`;
+            Answer:`;
 
     // 4. Call DeepSeek
     const response = await openai.chat.completions.create({
