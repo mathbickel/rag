@@ -1,6 +1,5 @@
 import fs from 'fs'
 import path from 'path';
-import { appendFile } from 'fs/promises';
 
 export type documentsData = {
     ids: string[],
@@ -27,10 +26,22 @@ export function getDocuments(): documentsData {
     }
 }
 
-export async function saveContextToFile(context: string): Promise<void> {
+export function saveContextToFile(context: string): void {
+    const filePath = path.join(__dirname, 'context.txt');
     try {
-        await appendFile('context.txt', context, 'utf-8');
+        fs.appendFileSync(filePath, context, 'utf-8');
     } catch (err: any) {
         throw new Error('Error to save file');
     }
 }
+
+export function readContextFromFile(): string {
+    const filePath = path.join(__dirname, 'context.txt');
+    try {
+        if (!fs.existsSync(filePath)) return '';
+        return fs.readFileSync(filePath, 'utf-8');
+    } catch (err: any) {
+        throw new Error('Error to read file');
+    }
+}
+
